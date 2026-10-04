@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d5c46">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Khatmi · ختمي</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%2312805f%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%230b4234%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20x%3D%2716%27%20y%3D%2716%27%20width%3D%27480%27%20height%3D%27480%27%20rx%3D%27112%27%20fill%3D%27url%28%23g%29%27/%3E%3Cg%20transform%3D%27translate%28256%20268%29%27%20fill%3D%27none%27%20stroke%3D%27%23e9c46a%27%20stroke-width%3D%2713%27%3E%3Crect%20x%3D%27-148%27%20y%3D%27-148%27%20width%3D%27296%27%20height%3D%27296%27/%3E%3Crect%20x%3D%27-148%27%20y%3D%27-148%27%20width%3D%27296%27%20height%3D%27296%27%20transform%3D%27rotate%2845%29%27/%3E%3C/g%3E%3Cg%20transform%3D%27translate%28256%20272%29%27%3E%3Cpath%20d%3D%27M-118%20-52%20C-84%20-72%20-36%20-72%200%20-50%20C36%20-72%2084%20-72%20118%20-52%20L118%2052%20C84%2032%2036%2032%200%2054%20C-36%2032%20-84%2032%20-118%2052%20Z%27%20fill%3D%27%23ffffff%27/%3E%3Cpath%20d%3D%27M0%20-50%20L0%2054%27%20stroke%3D%27%230b4234%27%20stroke-width%3D%279%27/%3E%3Cpath%20d%3D%27M0%20-50%20L24%20-50%20L24%206%20L12%20-8%20L0%206%20Z%27%20fill%3D%27%23e9c46a%27/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{
+ --g:#0d5c46; --g2:#12805f; --gsoft:#e3f0ea; --ink:#1a2420; --mut:#6b7a74; --line:#dfe7e3;
+ --bg:#f7faf8; --card:#ffffff; --danger:#b3372f;
+ --fr-labels:'ثمن ⅛|ربع ¼|ثمن ⅜|نصف ½|ثمن ⅝|ربع ¾|ثمن ⅞|ربع · نهاية الحزب';
+}
+@media (prefers-color-scheme: dark){
+ :root{ --ink:#e8efec; --mut:#93a49d; --line:#2c3a35; --bg:#101614; --card:#1a2320; --gsoft:#17352c; --danger:#e06c63; }
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+body{margin:0; font-family:system-ui,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--ink)}
+[dir=rtl]{font-family:system-ui,sans-serif}
+button{font:inherit; cursor:pointer; color:inherit}
+.num{font-variant-numeric:tabular-nums}
+#wrap{max-width:520px; margin:0 auto; padding:12px 12px 84px; display:none}
+header{display:flex; align-items:center; justify-content:space-between; padding:6px 2px 12px}
+header .logo{display:flex;align-items:center;gap:8px}
+header .logo svg{border-radius:8px;display:block}
+header .logo{font-size:22px; font-weight:700; color:var(--g)}
+header .logo small{font-size:12px; color:var(--mut); font-weight:400}
+.chip{border:1px solid var(--line); border-radius:20px; padding:3px 12px; font-size:13px; background:transparent; color:var(--mut)}
+.chip.on{border-color:var(--g); color:var(--g); font-weight:600}
+.card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; margin-bottom:12px}
+.ringwrap{display:flex; align-items:center; gap:18px}
+.ring{position:relative; width:110px; height:110px; flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .txt{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center}
+.ring .pct{font-size:24px; font-weight:700; color:var(--g)}
+.ring .of{font-size:11px; color:var(--mut)}
+.btn{background:var(--g); color:#fff; border:none; border-radius:12px; padding:12px 18px; font-weight:600; font-size:15px; width:100%}
+.btn.ghost{background:transparent; border:1px solid var(--line); color:var(--ink); font-weight:400}
+.btn.small{width:auto; padding:7px 12px; font-size:13px; border-radius:9px}
+.targetrow{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:6px}
+.qbtn{width:40px; height:40px; border-radius:12px; border:1px solid var(--line); background:var(--card); font-size:19px; color:var(--g)}
+.quick{display:flex; gap:8px; margin-top:10px}
+.quick .btn{padding:10px 6px; font-size:13px}
+h3{font-size:13px; text-transform:uppercase; letter-spacing:.6px; color:var(--mut); margin:18px 4px 8px; font-weight:600}
+.hgrid{display:grid; grid-template-columns:repeat(6,1fr); gap:8px}
+.hz{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:7px 4px 5px; text-align:center}
+.hz .n{font-size:13px; font-weight:600}
+.hz .bar{display:flex; gap:2px; justify-content:center; margin-top:5px}
+.hz .bar i{width:5px; height:9px; border-radius:2px; background:var(--line)}
+.hz .bar i.d{background:var(--g2)}
+.hz.done .n{color:var(--g)}
+.hz.next{border:2px solid var(--g)}
+.hz.lock .n{color:var(--mut)}
+.trow{display:flex; align-items:center; gap:10px; padding:10px 2px; border-bottom:1px solid var(--line)}
+.trow:last-child{border-bottom:none}
+.tchk{width:28px; height:28px; border-radius:9px; border:2px solid var(--line); background:transparent; flex:none; display:flex; align-items:center; justify-content:center; font-size:15px; color:transparent}
+.tchk.on{background:var(--g); border-color:var(--g); color:#fff}
+.tmeta{flex:1; min-width:0}
+.tmeta .fr{font-size:12px; color:var(--mut)}
+.tmeta .ay{font-size:17px; margin-top:1px; direction:rtl; text-align:start}
+.tsave{background:transparent;border:1px solid var(--line);border-radius:8px;font-size:14px;padding:3px 7px;color:var(--mut)}
+.editable:empty:before{content:"✎";color:var(--line)}
+.tedit{border:none; background:none; font-size:16px; color:var(--mut); padding:4px}
+.sheet-head{display:flex; justify-content:space-between; align-items:flex-start; gap:8px}
+.warn{background:#fdf3e7; color:#8a5a12; border:1px solid #ecd9b8; border-radius:10px; padding:8px 10px; font-size:12.5px; margin-bottom:8px}
+@media (prefers-color-scheme: dark){.warn{background:#33270f; border-color:#57431a; color:#e3b96a}}
+.tabs{position:fixed; bottom:0; left:0; right:0; background:var(--card); border-top:1px solid var(--line); display:flex; z-index:20}
+.tabs button{flex:1; padding:10px 0 14px; background:none; border:none; font-size:12px; color:var(--mut); display:flex; flex-direction:column; align-items:center; gap:2px}
+.tabs button.on{color:var(--g); font-weight:600}
+.tabs .ic{font-size:19px}
+.statgrid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; text-align:center}
+.statgrid .v{font-size:20px; font-weight:700; color:var(--g)}
+.statgrid .l{font-size:11px; color:var(--mut)}
+.wbar{display:flex; align-items:flex-end; gap:6px; height:80px; margin-top:8px}
+.wbar .col{flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end}
+.wbar .b{width:100%; background:var(--g2); border-radius:4px 4px 0 0; min-height:2px}
+.wbar .d{font-size:10px; color:var(--mut)}
+input[type=time],input[type=number]{background:var(--card); border:1px solid var(--line); color:var(--ink); border-radius:10px; padding:8px 10px; font:inherit}
+.rowline{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line)}
+.rowline:last-child{border:none}
+.switch{position:relative; width:44px; height:26px; flex:none}
+.switch input{opacity:0; width:100%; height:100%; position:absolute; margin:0; cursor:pointer; z-index:2}
+.switch .tr{position:absolute; inset:0; background:var(--line); border-radius:20px; transition:.2s}
+.switch .tr::after{content:''; position:absolute; width:20px; height:20px; border-radius:50%; background:#fff; top:3px; left:3px; transition:.2s; box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.switch input:checked + .tr{background:var(--g)}
+.switch input:checked + .tr::after{transform:translateX(18px)}
+[dir=rtl] .switch input:checked + .tr::after{transform:translateX(-18px)}
+#sheet{position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:30; display:none; align-items:flex-end; justify-content:center}
+#sheet .box{background:var(--card); border-radius:20px 20px 0 0; max-width:520px; width:100%; max-height:86vh; overflow:auto; padding:16px 16px 26px; animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px); opacity:.5}to{transform:none; opacity:1}}
+.backdrop{position:fixed; inset:0; z-index:25}
+h2{font-size:17px; margin:0}
+.mut{color:var(--mut); font-size:13px}
+.center{text-align:center}
+.editable{min-height:22px; border-bottom:1px dashed var(--line); outline:none; padding:1px 4px}
+.editable:focus{border-color:var(--g)}
+</style>
+</head>
+<body>
+<div id="wrap">
+ <header>
+  <div class="logo" id="t-appname"><span id="logoIc"><svg width="30" height="30" viewBox="0 0 512 512"><rect x="16" y="16" width="480" height="480" rx="112" fill="#12805f"/><g transform="translate(256 268)" fill="none" stroke="#e9c46a" stroke-width="20"><rect x="-148" y="-148" width="296" height="296"/><rect x="-148" y="-148" width="296" height="296" transform="rotate(45)"/></g><g transform="translate(256 272)"><path d="M-118 -52 C-84 -72 -36 -72 0 -50 C36 -72 84 -72 118 -52 L118 52 C84 32 36 32 0 54 C-36 32 -84 32 -118 52 Z" fill="#ffffff"/><path d="M0 -50 L0 54" stroke="#0b4234" stroke-width="14"/><path d="M0 -50 L24 -50 L24 6 L12 -8 L0 6 Z" fill="#e9c46a"/></g></svg></span><span id="logoTx">Khatmi</span> <small id="t-tagline"></small></div>
+  <div>
+   <button class="chip" data-l="es">ES</button>
+   <button class="chip" data-l="ar">ع</button>
+   <button class="chip" data-l="en">EN</button>
+  </div>
+ </header>
+
+ <!-- HOY -->
+ <section id="tab-today">
+  <div class="card ringwrap">
+   <div class="ring">
+    <svg width="110" height="110"><circle cx="55" cy="55" r="47" fill="none" stroke="var(--line)" stroke-width="9"/>
+    <circle id="ringFg" cx="55" cy="55" r="47" fill="none" stroke="var(--g2)" stroke-width="9" stroke-linecap="round" stroke-dasharray="295.3" stroke-dashoffset="295.3" style="transition:stroke-dashoffset .8s ease"/></svg>
+    <div class="txt"><div class="pct num" id="ringPct">0%</div><div class="of" id="ringOf"></div></div>
+   </div>
+   <div style="flex:1">
+    <div id="t-khatmprog" style="font-weight:600"></div>
+    <div class="mut num" id="counts"></div>
+    <div class="mut" id="nextInfo" style="margin-top:6px"></div>
+    <div class="mut" id="paceInfo" style="margin-top:2px"></div>
+   </div>
+  </div>
+
+  <div class="card">
+   <div class="rowline" style="border:none; padding-top:0">
+    <div><b id="t-todaygoal"></b><div class="mut" id="todayCount"></div></div>
+    <div style="display:flex; gap:8px; align-items:center">
+     <button class="qbtn" id="minusT">−</button>
+     <span class="num" id="targetNum" style="font-size:18px; font-weight:700; color:var(--g)">4</span>
+     <button class="qbtn" id="plusT">+</button>
+    </div>
+   </div>
+   <div class="quick" id="quickDone"></div>
+  </div>
+  <div class="card" id="remindCard" style="display:none">
+   <div class="rowline" style="border:none; padding:0">
+    <div id="remindTxt" class="mut"></div>
+    <button class="btn small ghost" id="remindGo"></button>
+   </div>
+  </div>
+ </section>
+
+ <!-- GRID -->
+ <section id="tab-grid" style="display:none">
+   <div class="hgrid" id="hgrid"></div>
+ </section>
+
+ <!-- STATS -->
+ <section id="tab-stats" style="display:none">
+  <div class="card statgrid" id="statGrid"></div>
+  <div class="card"><b id="t-week"></b><div class="wbar" id="wbar"></div></div>
+  <div class="card mut" id="finishInfo"></div>
+ </section>
+
+ <!-- AJUSTES -->
+ <section id="tab-set" style="display:none">
+  <div class="card">
+   <div class="rowline"><div><b id="t-notif"></b><div class="mut" id="t-notifsub"></div></div>
+    <label class="switch"><input type="checkbox" id="notifOn"><span class="tr"></span></label></div>
+   <div class="rowline"><div class="mut" id="t-time"></div><input type="time" id="notifTime" value="21:00"></div>
+  </div>
+  <div class="card">
+   <div class="rowline"><div class="mut" id="t-theme"></div><label class="switch"><input type="checkbox" id="darkSw"><span class="tr"></span></label></div>
+   <div class="rowline"><button class="btn small ghost" id="expBtn"></button><button class="btn small ghost" id="impBtn"></button></div>
+   <div class="rowline"><button class="btn small" id="resetBtn" style="background:var(--danger); color:#fff"></button></div>
+  </div>
+  <div class="card mut center" style="font-size:12px" id="aboutTxt"></div>
+ </section>
+</div>
+
+<div id="sheet"><div class="box" id="sheetBox"></div></div>
+<div class="tabs" id="tabs" style="display:none">
+ <button data-t="today"><span class="ic">◉</span><span data-tt="today"></span></button>
+ <button data-t="grid"><span class="ic">▦</span><span data-tt="grid"></span></button>
+ <button data-t="stats"><span class="ic">📊</span><span data-tt="stats"></span></button>
+ <button data-t="set"><span class="ic">⚙</span><span data-tt="set"></span></button>
+</div>
+<input type="file" id="impFile" accept="application/json" style="display:none">
+
+<script>
+const DATA = {
+ "units": [
+  {
+   "h": 1,
+   "juz": 1,
+   "title": "Al-Fatiha 1 → Al-Baqarah 74",
+   "starts": [
+    "الحمدلله",
+    "مثلهم كمثل",
+    "إن الله لا يستحي",
+    "وإذ قلنا",
+    "و لا تلبسوا الحق",
+    "وإذ قال موسى",
+    "واذا استسقى",
+    "وإذ قال موسى"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 2,
+   "juz": 1,
+   "title": "Al-Baqarah 75–141",
+   "starts": [
+    "و إذا لقوا",
+    "و ان ياتكم",
+    "ولقد جاءكم",
+    "ولما جاءهم",
+    "ما ننسخ",
+    "و من اظلم",
+    "و اذ أبتلى",
+    "أم كنتم شهداء"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 3,
+   "juz": 2,
+   "title": "Al-Baqarah 142–202",
+   "starts": [
+    "سيقول السفهاء",
+    "ولكل وجهة",
+    "إن الصفا",
+    "إذ تبرأ",
+    "ليس البر",
+    "شهر رمضان",
+    "يسألونك",
+    "فمن لم يجد"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 4,
+   "juz": 2,
+   "title": "Al-Baqarah 203–252",
+   "starts": [
+    "واذكروا الله",
+    "كان الناس",
+    "يسألونك",
+    "والمطلقات",
+    "والوالدات",
+    "ولاتعزموا",
+    "الم تر",
+    "و فال لهم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 5,
+   "juz": 3,
+   "title": "Al-Baqarah 253 → Al-Imran 14",
+   "starts": [
+    "تلك الرسل",
+    "الم تر",
+    "قول معروف",
+    "يا أيها الذين",
+    "ليس عليك",
+    "و ان كان",
+    "و ان كنتم على",
+    "ان الله"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 6,
+   "juz": 3,
+   "title": "Al-Imran 15–91",
+   "starts": [
+    "قل او أنبئكم",
+    "الم تر",
+    "ان الله اصطفى",
+    "و إذ قالت",
+    "فلما احس",
+    "قل يأهل الكتاب",
+    "و من أهل الكتاب",
+    "قال ءاقررتم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 7,
+   "juz": 4,
+   "title": "Al-Imran 92 → An-Nisa 23",
+   "starts": [
+    "لن تنالوا",
+    "و اعتصموا",
+    "ليسوا سواء",
+    "و اذ غدوت",
+    "سارعوا",
+    "و ما محمد",
+    "اذ تصعدون",
+    "ان ينصزكم الله"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 8,
+   "juz": 4,
+   "title": "Al-Imran → An-Nisa",
+   "starts": [
+    "يستبشرون بنعمة",
+    "لقد سمع الله",
+    "لتبلون",
+    "لا يغرنك",
+    "وابتلوا",
+    "يصيكم الله",
+    "تلك حدود الله",
+    "و عاشروهن"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 9,
+   "juz": 5,
+   "title": "An-Nisa 24 → 148",
+   "starts": [
+    "والمحصنات",
+    "ياأيها الذين",
+    "واعبدوا الله",
+    "من الذين هادوا",
+    "إن الله يأمروكم",
+    "فلا وربك",
+    "فليقاتل",
+    "ما اصابك"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 10,
+   "juz": 5,
+   "title": "An-Nisa (fin)",
+   "starts": [
+    "الله لا إلاه إلا هو",
+    "فمن لم يجد",
+    "و من يهاجر",
+    "انا انزلنا",
+    "لا خير",
+    "ومن يعمل",
+    "وأن يتفرقا",
+    "و قد نزل عليكم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 11,
+   "juz": 6,
+   "title": "An-Nisa → Al-Ma'idah",
+   "starts": [
+    "لا يحبّ الله الجهر",
+    "وماقتلوه",
+    "لاكنالله",
+    "يأيها الناس",
+    "حرّمت عليكم",
+    "يا أيها الذين",
+    "و لقد اخذ الله",
+    "لقد كفر الذين"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 12,
+   "juz": 6,
+   "title": "Al-Ma'idah",
+   "starts": [
+    "قال رجلان",
+    "و لقد جاءتهم",
+    "يأيها الرسول",
+    "وكتبنا عليهم",
+    "و ان احكم",
+    "و اذا ناديتم",
+    "يأيها الرسول",
+    "لقد كفر الذين"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 13,
+   "juz": 7,
+   "title": "Al-Ma'idah → Al-An'am",
+   "starts": [
+    "لتجدن أشدّ الناس",
+    "ياأيها الذين",
+    "جعل الله",
+    "يا أيها الذين",
+    "و اذ اوحيت",
+    "الحمدلله",
+    "و له ما سكن",
+    "وهم ينهون عنه"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 14,
+   "juz": 7,
+   "title": "Al-An'am",
+   "starts": [
+    "إنّما يستجيب",
+    "و ما نرسل المرسلين",
+    "وعنده مفاتح الغيب",
+    "وذرالذين",
+    "و حاجه قومه",
+    "و ما قدروا الله",
+    "إنّ الله فالق",
+    "لا تدركه الأبصار"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 15,
+   "juz": 8,
+   "title": "Al-An'am",
+   "starts": [
+    "ولواننا انزلنا",
+    "و ذروا ظاهر الاثم",
+    "لهم دار السلام",
+    "قل يا قوم اعملوا",
+    "قد خسر الذين",
+    "قا لا اجد",
+    "قل تعالوا",
+    "هل ينظرون"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 16,
+   "juz": 8,
+   "title": "Al-A'raf",
+   "starts": [
+    "فما كان",
+    "وقاسمها",
+    "قل من حرّم",
+    "و قالت الياهم",
+    "و إذا صرفت",
+    "و هو الذي يرسل الرياح",
+    "او اعجبتم",
+    "فعقروا الناقة"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 17,
+   "juz": 9,
+   "title": "Al-A'raf",
+   "starts": [
+    "قال الملأ الذين",
+    "او لم يهد",
+    "و أوحينا موسى",
+    "و قالوا مهما",
+    "ووعدنا موسى",
+    "م لما سقط",
+    "واكتب لنا",
+    "وسألهم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 18,
+   "juz": 9,
+   "title": "Al-A'raf → Al-Anfal",
+   "starts": [
+    "و إذ نتقنا الجبل",
+    "و اقد ذرأنا",
+    "قل لاأملك",
+    "وإما ينزغنك",
+    "كما أخرجك ربك",
+    "يأيها الذين آمنوا",
+    "إن شر الدواب",
+    "و إذا تتلى"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 19,
+   "juz": 10,
+   "title": "Al-Anfal → At-Tawbah",
+   "starts": [
+    "واعلموا انما",
+    "و إذ زيّن",
+    "و أعدوا لهم",
+    "وإن يريدوا",
+    "فإذاانسلخ",
+    "و إن نكثوا",
+    "أجعلتم",
+    "يأيها الذين آمنوا"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 20,
+   "juz": 10,
+   "title": "At-Tawbah",
+   "starts": [
+    "يأيها الذين آمنوا",
+    "الا تنصروه",
+    "ولو أرادوا",
+    "فلا تعجبك",
+    "وًمنهم الذين",
+    "الم يأتهم",
+    "ومنهم من عاهد",
+    "و لا تعجبك"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 21,
+   "juz": 11,
+   "title": "At-Tawbah → Yunus",
+   "starts": [
+    "انما السبيل",
+    "و ممن حولكم",
+    "إن الله أشترى",
+    "لقد تاب الله",
+    "يأيها الذين",
+    "إن ربكم الله",
+    "ولو يعجّل الله",
+    "وما كان الناس"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 22,
+   "juz": 11,
+   "title": "Yunus",
+   "starts": [
+    "للذين احسنوا",
+    "وما كان هاذا القرأن",
+    "قل لا أملك",
+    "وما تكون في شأن",
+    "واتلوا عليهم",
+    "فماءامن",
+    "ولقد بوّأنا",
+    "قل يأيها الناس"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 23,
+   "juz": 12,
+   "title": "Hud",
+   "starts": [
+    "وما من دابة",
+    "من كان يريد",
+    "مثل الفريقين",
+    "قالوا يانوح",
+    "وقال اركبوا",
+    "قالوا يا هود",
+    "قالوا يا صالح",
+    "قالوا أتعجبين"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 24,
+   "juz": 12,
+   "title": "Hud → Yusuf",
+   "starts": [
+    "و الى مدين",
+    "و ياقوم اعملوا",
+    "يوم ياتي",
+    "و ما كان ربك",
+    "قال قائل",
+    "وراودته",
+    "قال رب السجن",
+    "و قال للذي ظن"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 25,
+   "juz": 13,
+   "title": "Yusuf → Ar-Ra'd",
+   "starts": [
+    "و ما ابرئ",
+    "قال لن ارسله",
+    "قالوا ان يسرق",
+    "فلما دخلوا عليه",
+    "رب قد ءاتيتنى",
+    "لقد كان",
+    "و ان تعجب",
+    "له دعوة الحق"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 26,
+   "juz": 13,
+   "title": "Ar-Ra'd → Ibrahim",
+   "starts": [
+    "أفمن يعلم",
+    "كذالك أرسلناك",
+    "مثل الجنة",
+    "الر",
+    "فآلت رسلهم",
+    "ا لم ترى أن الله",
+    "ا لم تر الى الذين",
+    "الحمدلله"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 27,
+   "juz": 14,
+   "title": "Al-Hijr 1 → An-Nahl",
+   "starts": [
+    "الر تلك آيات",
+    "و أرسلنا الرياح",
+    "نبئ عبادى",
+    "و إن كان اصحاب",
+    "أتى أمر الله",
+    "و ألقى في الارض",
+    "و أقسموا بالله",
+    ""
+   ],
+   "missing": 1,
+   "verify": false
+  },
+  {
+   "h": 28,
+   "juz": 14,
+   "title": "An-Nahl",
+   "starts": [
+    "و قال الله",
+    "تالله لقد أرسلنا",
+    "و الله فضل بعضكم",
+    "ألم يروا",
+    "إنّ الله يأمر",
+    "فإذا قرأت",
+    "يوم تاتي كل نفس",
+    "إنّ إبراهيم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 29,
+   "juz": 15,
+   "title": "Al-Isra",
+   "starts": [
+    "سبحان الذى",
+    "و يدعو الانسان",
+    "و قضى ربّك",
+    "و لا تقف",
+    "قل كونوا حجارة",
+    "و إذ قلنا للملائكه",
+    "و لقد كرمنا",
+    "و يسألونك عن الروح"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 30,
+   "juz": 15,
+   "title": "Al-Isra → Al-Kahf",
+   "starts": [
+    "أولم يروا أنّ الله",
+    "الحمدلله الذي انزل على عبده",
+    "و ترى الشمس",
+    "فلا تمارفيهم",
+    "إن الذين آمنوا وعملوا",
+    "و احيط بثموره",
+    "و إذ قلنا للملائكه",
+    "و تلك القرى"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 31,
+   "juz": 16,
+   "title": "Al-Kahf → Maryam",
+   "starts": [
+    "قال ألم قل لك",
+    "إنا مكنا له",
+    "أفحسب الدين كفروا",
+    "كهيعص",
+    "فحملته",
+    "واذكر في الكتاب",
+    "فخلف من بعدهم",
+    "قل من كان في الضلالة"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 32,
+   "juz": 16,
+   "title": "Ta-Ha",
+   "starts": [
+    "طه",
+    "قال قد اوتيت",
+    "منها خلقناكم",
+    "قالوا لن نوثرك",
+    "و ما أعجلك عن قومك",
+    "قال فاذهب",
+    "و عنت الوجوه",
+    "قال كذالك أتتك ءاياتنا"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 33,
+   "juz": 17,
+   "title": "Al-Anbiya",
+   "starts": [
+    "اقترب للناس",
+    "فما زالت تلك دعويهم",
+    "او لم يرالذين كفروا",
+    "قل من يكلؤكم",
+    "و لقد اتينا ابراهيم",
+    "و جعلناهم أئمة",
+    "وذا النون",
+    "ان الذين سبقت لهم منا الحسنى"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 34,
+   "juz": 17,
+   "title": "Al-Hajj",
+   "starts": [
+    "يأيها الناس القوا ربكم",
+    "و من الناس من يعبد",
+    "هاذان خصمان",
+    "ذالك و من يعظم",
+    "إن الله يدافع",
+    "قل ياأيها الناس",
+    "ذالك ومن عاقب",
+    "و إذا تتلى عليهم"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 35,
+   "juz": 18,
+   "title": "Al-Mu'minun → An-Nur",
+   "starts": [
+    "قد أفلح المؤمنون",
+    "فقال الملؤا الذين",
+    "قال رب اُنصرني",
+    "إنّ الذين هم من خشية ربّهم",
+    "و لو رحمناهم",
+    "قل رب إما ترينى",
+    "أفحسبتم",
+    "إنّ الذين جاءوا بالإفك"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 36,
+   "juz": 18,
+   "title": "An-Nur → Al-Furqan",
+   "starts": [
+    "يأيها الذين آمنوا",
+    "قل للمؤمنين",
+    "الله نور السموات والأرض",
+    "ألم تر أن الله",
+    "وأقسموا بالله جهد أيمانهم",
+    "والقواعد من النساء",
+    "لا تجعلوا دعاء الرسول",
+    "تبارك الذي"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 37,
+   "juz": 19,
+   "title": "Al-Furqan → Ash-Shu'ara",
+   "starts": [
+    "و قال الدين لا يرجون",
+    "ولقد ءاتينا موسى الكتاب",
+    "الم تر إلى ربك",
+    "تبارك الذي",
+    "طسم",
+    "قال لمن حوله",
+    "قالوا لا ضير",
+    "والذي أطمع"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 38,
+   "juz": 19,
+   "title": "Ash-Shu'ara → An-Naml",
+   "starts": [
+    "قالوا أنومن لك",
+    "أتتركون في ما هاهنا",
+    "و أوفوا الكيل",
+    "وما تنزلت به الشياطين",
+    "و إنك لتلقى",
+    "و حشر لسليمان",
+    "قال سننظر",
+    "قال نكروا لها عرشها"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 39,
+   "juz": 20,
+   "title": "An-Naml → Al-Qasas",
+   "starts": [
+    "فما كان",
+    "بل إدّارك علمهم",
+    "و إذا وقع القول",
+    "طسم",
+    "و حرّمنا عليه المراضع",
+    "و لما توجه",
+    "فلما قضى موسى",
+    "واستكبر هو وجنوده"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 40,
+   "juz": 20,
+   "title": "Al-Qasas → Al-Ankabut",
+   "starts": [
+    "ولقد وصالنا لهم",
+    "قال الذين حقّ عليهم القول",
+    "إنّ قارون كان من قوم موسى",
+    "تلك الدار الآخرة",
+    "و وصينا الانسان بوالديه حسناً",
+    "إنما تعبدون من دون الله",
+    "فأمن له لوط",
+    "و إلى مدين أخاهم شعيبا"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 41,
+   "juz": 21,
+   "title": "Al-Ankabut → Ar-Rum → Luqman",
+   "starts": [
+    "و لاتجادلوا أهل الكتاب",
+    "و كأين منّ دابة",
+    "أولم يسيروا",
+    "و من ءاياته خلق السماوات و الأرض",
+    "فأقم وجهك",
+    "ظهر الفساد في البر والبحر",
+    "الله الذي خلقكم من ضعف",
+    "هاذا خلق الله"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 42,
+   "juz": 21,
+   "title": "Luqman → As-Sajdah → Al-Ahzab",
+   "starts": [
+    "و من يسلم وجهه الى الله",
+    "يأيها الناس اتقوا ربكم",
+    "قل يتوفياكم",
+    "و لنذيقنهم من العذاب",
+    "يأها النبىء اتق الله",
+    "يأيها الذين آمنوا اذكروا نعمة الله عليكم",
+    "قد يعلم الله المعوقين منكم",
+    "وردّ الله الذين كفروا"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 43,
+   "juz": 22,
+   "title": "Al-Ahzab → Saba",
+   "starts": [
+    "و من يقنت منكن لله",
+    "فلما قضى زيد منها",
+    "يا أيها الذين أمنوا اذا نكحتم",
+    "يأيها الذين آمنوا لا تدخلوا",
+    "لئن لم ينته المنافقون",
+    "الحمدلله الذي له ما في السماوات",
+    "ولقد أتينا داود",
+    "و جعلنا بينهم و بين القرى"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 44,
+   "juz": 22,
+   "title": "Saba → Fatir → Ya-Sin",
+   "starts": [
+    "قل من يرزقكم",
+    "وما أموالكم ولا أولادكم",
+    "قل إنما أعظكم بواحدة",
+    "أفمن زين له سوء",
+    "يأيها الناس أنتم الفقراء إلى الله",
+    "والذي أوحينا إليك",
+    "إنّ الله يمسك السموات",
+    "يس"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 45,
+   "juz": 23,
+   "title": "Ya-Sin → As-Saffat",
+   "starts": [
+    "وما أنزلنا على قومه",
+    "وما تأتيهم من ءاياة من ءايات ربهم",
+    "الم أعهد إليكم يا بنى ءادم",
+    "الذي جعل لكم من الشجر الأخضر",
+    "احشروا الذين ضلموا",
+    "قال قائل منهم",
+    "وإنّ من شيعته لإبراهيم",
+    "ولقد مننا على موسى وهارون"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 46,
+   "juz": 23,
+   "title": "As-Saffat → Sad → Az-Zumar",
+   "starts": [
+    "فنبذناه بالعراء",
+    "ص",
+    "و هل آتايك نبؤا الخصم",
+    "إذ عرض عليه",
+    "هاذا ما توعدون",
+    "قال فالحقّ والحق أقول",
+    "وإذا مس الانسان",
+    "ألم تر أن الله أنزل من السماء ماء"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 47,
+   "juz": 24,
+   "title": "Az-Zumar 32 → Ghafir",
+   "starts": [
+    "فمن آظلم",
+    "أم اتخذوا من دون الله",
+    "و أنيبوا إلى ربكم",
+    "وما قدروا الله حق قدره",
+    "حم",
+    "قالوا ربنا",
+    "اولم يسيروا في الارض",
+    "وقال الذي ءامن"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 48,
+   "juz": 24,
+   "title": "Ghafir 38 → Fussilat 46",
+   "starts": [
+    "و ياقوم",
+    "و لقد آتينا موسى الهدى",
+    "قل اني نهيت",
+    "الله الذي جعل لكم العنام",
+    "قل أئنكم لتكفرون",
+    "وأمّا ثمود",
+    "و قيضنا لهم قرنآء",
+    "فإن استكبروا"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 49,
+   "juz": 25,
+   "title": "Fussilat 47 → Az-Zukhruf (fin Juz' 25)",
+   "starts": [
+    "إليه يردّ علم الساعة",
+    "يكاد السماوات",
+    "شرع لكم من الدّين",
+    "من كان يريد حرث الأخرة",
+    "و لو بسط الله الرزق",
+    "انما السبيل",
+    "و ما كان لبشر أن بكلمه الله",
+    "والذي نزل من السماء"
+   ],
+   "missing": 0,
+   "verify": false
+  },
+  {
+   "h": 50,
+   "juz": 25,
+   "title": "Az-Zukhruf 43:24 → Al-Jathiyah 45:37",
+   "starts": [
+    "قال أولو جئتكم بأهدى",
+    "أم لهم الغيب فهم يكتبون",
+    "ولما ضرب ابن مريم مثلًا",
+    "سبحان رب السماوات والأرض رب العرش",
+    "ولقد فتنا قبلهم قوم فرعون",
+    "طعام الأثيم",
+    "الله الذي سخر لكم البحر",
+    "وقالوا ما هي إلا حياتنا الدنيا"
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 51,
+   "juz": 26,
+   "title": "Al-Ahqaf 46 → Adh-Dhariyat 51",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 52,
+   "juz": 26,
+   "title": "Al-Ahqaf 46 → Adh-Dhariyat 51",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 53,
+   "juz": 27,
+   "title": "Adh-Dhariyat 51 → Al-Hadid 57",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 54,
+   "juz": 27,
+   "title": "Al-Hadid 57 → Al-Mujadila 58",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 55,
+   "juz": 28,
+   "title": "Al-Mujadila 58 → At-Tahrim 66",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 56,
+   "juz": 28,
+   "title": "Al-Mujadila 58 → Al-Mulk 67",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 57,
+   "juz": 29,
+   "title": "Al-Mulk 67 → Al-Mursalat 77",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 58,
+   "juz": 29,
+   "title": "Al-Mulk 67 → Al-Mursalat 77",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 59,
+   "juz": 30,
+   "title": "An-Naba 78 → An-Nas 114",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  },
+  {
+   "h": 60,
+   "juz": 30,
+   "title": "An-Naba 78 → An-Nas 114",
+   "starts": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "missing": 8,
+   "verify": false
+  }
+ ],
+ "seed": {
+  "1-1": null,
+  "1-2": null,
+  "1-3": null,
+  "1-4": null,
+  "1-5": null,
+  "1-6": null,
+  "1-7": null,
+  "1-8": null,
+  "2-1": null,
+  "2-2": null,
+  "2-3": null,
+  "2-4": null,
+  "2-5": null,
+  "2-6": null,
+  "2-7": null,
+  "2-8": null,
+  "3-1": null,
+  "3-2": null,
+  "3-3": null,
+  "3-4": null,
+  "3-5": null,
+  "3-6": null,
+  "3-7": null,
+  "3-8": null,
+  "4-1": null,
+  "4-2": null,
+  "4-3": null,
+  "4-4": null,
+  "4-5": null,
+  "4-6": null,
+  "4-7": null,
+  "4-8": null,
+  "5-1": null,
+  "5-2": null,
+  "5-3": null,
+  "5-4": null,
+  "5-5": null,
+  "5-6": null,
+  "5-7": null,
+  "5-8": null,
+  "6-1": null,
+  "6-2": null,
+  "6-3": null,
+  "6-4": null,
+  "6-5": null,
+  "6-6": null,
+  "6-7": null,
+  "6-8": null,
+  "7-1": null,
+  "7-2": null,
+  "7-3": null,
+  "7-4": null,
+  "7-5": null,
+  "7-6": null,
+  "7-7": null,
+  "7-8": null,
+  "8-1": null,
+  "8-2": null,
+  "8-3": null,
+  "8-4": null,
+  "8-5": null,
+  "8-6": null,
+  "8-7": null,
+  "8-8": null,
+  "9-1": null,
+  "9-2": null,
+  "9-3": null,
+  "9-4": null,
+  "9-5": null,
+  "9-6": null,
+  "9-7": null,
+  "9-8": null,
+  "10-1": null,
+  "10-2": null,
+  "10-3": null,
+  "10-4": null,
+  "10-5": null,
+  "10-6": null,
+  "10-7": null,
+  "10-8": null,
+  "11-1": null,
+  "11-2": null,
+  "11-3": null,
+  "11-4": null,
+  "11-5": null,
+  "11-6": null,
+  "11-7": null,
+  "11-8": null,
+  "12-1": null,
+  "12-2": null,
+  "12-3": null,
+  "12-4": null,
+  "12-5": null,
+  "12-6": null,
+  "12-7": null,
+  "12-8": null,
+  "13-1": null,
+  "13-2": null,
+  "13-3": null,
+  "13-4": null,
+  "13-5": null,
+  "13-6": null,
+  "13-7": null,
+  "13-8": null,
+  "14-1": null,
+  "14-2": null,
+  "14-3": null,
+  "14-4": null,
+  "14-5": null,
+  "14-6": null,
+  "14-7": null,
+  "14-8": null,
+  "15-1": null,
+  "15-2": null,
+  "15-3": null,
+  "15-4": null,
+  "15-5": null,
+  "15-6": null,
+  "15-7": null,
+  "15-8": null,
+  "16-1": null,
+  "16-2": null,
+  "16-3": null,
+  "16-4": null,
+  "16-5": null,
+  "16-6": null,
+  "16-7": null,
+  "16-8": null,
+  "17-1": null,
+  "17-2": null,
+  "17-3": null,
+  "17-4": null,
+  "17-5": null,
+  "17-6": null,
+  "17-7": null,
+  "17-8": null,
+  "18-1": null,
+  "18-2": null,
+  "18-3": null,
+  "18-4": null,
+  "18-5": null,
+  "18-6": null,
+  "18-7": null,
+  "18-8": null,
+  "19-1": null,
+  "19-2": null,
+  "19-3": null,
+  "19-4": null,
+  "19-5": null,
+  "19-6": null,
+  "19-7": null,
+  "19-8": null,
+  "20-1": null,
+  "20-2": null,
+  "20-3": null,
+  "20-4": null,
+  "20-5": null,
+  "20-6": null,
+  "20-7": null,
+  "20-8": null,
+  "21-1": null,
+  "21-2": null,
+  "21-3": null,
+  "21-4": null,
+  "21-5": null,
+  "21-6": null,
+  "21-7": null,
+  "21-8": null,
+  "22-1": null,
+  "22-2": null,
+  "22-3": null,
+  "22-4": null,
+  "22-5": null,
+  "22-6": null,
+  "22-7": null,
+  "22-8": null,
+  "23-1": null,
+  "23-2": null,
+  "23-3": null,
+  "23-4": null,
+  "23-5": null,
+  "23-6": null,
+  "23-7": null,
+  "23-8": null,
+  "24-1": null,
+  "24-2": null,
+  "24-3": null,
+  "24-4": null,
+  "24-5": null,
+  "24-6": null,
+  "24-7": null,
+  "24-8": null,
+  "25-1": null,
+  "25-2": null,
+  "25-3": null,
+  "25-4": null,
+  "25-5": null,
+  "25-6": null,
+  "25-7": null,
+  "25-8": null,
+  "26-1": null,
+  "26-2": null,
+  "26-3": null,
+  "26-4": null,
+  "26-5": null,
+  "26-6": null,
+  "26-7": null,
+  "26-8": null,
+  "27-1": null,
+  "27-2": null,
+  "27-3": null,
+  "27-4": null,
+  "27-5": null,
+  "27-6": null,
+  "27-7": null,
+  "28-1": null,
+  "28-2": null,
+  "28-3": null,
+  "28-4": null,
+  "28-5": null,
+  "28-6": null,
+  "28-7": null,
+  "28-8": null,
+  "29-1": null,
+  "29-2": null,
+  "29-3": null,
+  "29-4": null,
+  "29-5": null,
+  "29-6": null,
+  "29-7": null,
+  "29-8": null,
+  "30-1": null,
+  "30-2": null,
+  "30-3": null,
+  "30-4": null,
+  "30-5": null,
+  "30-6": null,
+  "30-7": null,
+  "30-8": null,
+  "31-1": null,
+  "31-2": null,
+  "31-3": null,
+  "31-4": null,
+  "31-5": null,
+  "31-6": null,
+  "31-7": null,
+  "31-8": null,
+  "32-1": null,
+  "32-2": null,
+  "32-3": null,
+  "32-4": null,
+  "32-5": null,
+  "32-6": null,
+  "32-7": null,
+  "32-8": null,
+  "33-1": null,
+  "33-2": null,
+  "33-3": null,
+  "33-4": null,
+  "33-5": null,
+  "33-6": null,
+  "33-7": null,
+  "33-8": null,
+  "34-1": null,
+  "34-2": null,
+  "34-3": null,
+  "34-4": null,
+  "34-5": null,
+  "34-6": null,
+  "34-7": null,
+  "34-8": null,
+  "35-1": null,
+  "35-2": null,
+  "35-3": null,
+  "35-4": null,
+  "35-5": null,
+  "35-6": null,
+  "35-7": null,
+  "35-8": null,
+  "36-1": null,
+  "36-2": null,
+  "36-3": null,
+  "36-4": null,
+  "36-5": null,
+  "36-6": null,
+  "36-7": null,
+  "36-8": null,
+  "37-1": null,
+  "37-2": null,
+  "37-3": null,
+  "37-4": null,
+  "37-5": null,
+  "37-6": null,
+  "37-7": null,
+  "37-8": null,
+  "38-1": null,
+  "38-2": null,
+  "38-3": null,
+  "38-4": null,
+  "38-5": null,
+  "38-6": null,
+  "38-7": null,
+  "38-8": null,
+  "39-1": null,
+  "39-2": null,
+  "39-3": null,
+  "39-4": null,
+  "39-5": null,
+  "39-6": null,
+  "39-7": null,
+  "39-8": null,
+  "40-1": null,
+  "40-2": null,
+  "40-3": null,
+  "40-4": null,
+  "40-5": null,
+  "40-6": null,
+  "40-7": null,
+  "40-8": null,
+  "41-1": null,
+  "41-2": null,
+  "41-3": null,
+  "41-4": null,
+  "41-5": null,
+  "41-6": null,
+  "41-7": null,
+  "41-8": null,
+  "42-1": null,
+  "42-2": null,
+  "42-3": null,
+  "42-4": null,
+  "42-5": null,
+  "42-6": null,
+  "42-7": null,
+  "42-8": null,
+  "43-1": null,
+  "43-2": null,
+  "43-3": null,
+  "43-4": null,
+  "43-5": null,
+  "43-6": null,
+  "43-7": null,
+  "43-8": null,
+  "44-1": null,
+  "44-2": null,
+  "44-3": null,
+  "44-4": null,
+  "44-5": null,
+  "44-6": null,
+  "44-7": null,
+  "44-8": null,
+  "45-1": null,
+  "45-2": null,
+  "45-3": null,
+  "45-4": null,
+  "45-5": null,
+  "45-6": null,
+  "45-7": null,
+  "45-8": null,
+  "46-1": null,
+  "46-2": null,
+  "46-3": null,
+  "46-4": null,
+  "46-5": null,
+  "46-6": null,
+  "46-7": null,
+  "46-8": null,
+  "47-1": null,
+  "47-2": null,
+  "47-3": null,
+  "47-4": null,
+  "47-5": null,
+  "47-6": null,
+  "47-7": null,
+  "47-8": null,
+  "48-1": null,
+  "48-2": null,
+  "48-3": null,
+  "48-4": null,
+  "48-5": null,
+  "48-6": null,
+  "48-7": null,
+  "48-8": null,
+  "49-1": null,
+  "49-2": null,
+  "49-3": null,
+  "49-4": null,
+  "49-5": null,
+  "49-6": null,
+  "49-7": null,
+  "49-8": null,
+  "50-1": null,
+  "50-2": null,
+  "50-3": null,
+  "50-4": null,
+  "50-5": null,
+  "50-6": null,
+  "50-7": null,
+  "50-8": null
+ }
+};
+const UNITS = DATA.units;
+const FR_AR = ['ثمن ⅛','ربع ¼','ثمن ⅜','نصف ½','ثمن ⅝','ربع ¾','ثمن ⅞','ربع · النهاية'];
+const FR_NUM = ['1/8','1/4','3/8','1/2','5/8','3/4','7/8','✓'];
+const L = {
+ es:{tagline:'seguimiento de recitación',tabs:{today:'Hoy',grid:'Hizbs',stats:'Stats',set:'Ajustes'},
+  khatmprog:'Progreso del khatm',hizbs:'hizbs',th:'thumns',next:'Siguiente',cur:'Hizb actual',
+  pace1:'Ritmo real',paceDef:'objetivo',days:'días',fin:'Fecha estimada de khatm',need:'faltan',done:'completado',
+  todaygoal:'Objetivo de hoy',doneToday:'hechos hoy',quick1:'+1 thumn de mi hizb actual',quickOk:'¡Barak Allahu fik! Hoy cumpliste tu objetivo ✓',
+  hizb:'Hizb',of:'de',markall:'Marcar hizb completo',save:'Guardar',unmarkall:'Desmarcar todo',close:'Cerrar',
+  thof:'thumn',verify:'Hizbs 50–60 sin datos: mira tu app مصحف تلاوة, escribe cada primera ayah y pulsa 💾 Guardar.',
+  verifyGo:'Verificar hizbs 50–60',verifyBtn:'Verificar hizbs 50–60',verifySub:'Te lleva al primer hizb (50–60) que falte por rellenar o recitar.',editHint:'las aleyas son editables: corrige lo que necesites y pulsa 💾 Guardar',streak:'racha',week:'Últimos 7 días',thWeek:'thumns esta semana',
+  best:'mejor racha',total:'total thumns',rate:'ritmo/día',notif:'Recordatorio diario',notifsub:'Avisa si a esa hora no llegaste al objetivo (requiere abrir la app en ese momento)',
+  time:'Hora del recordatorio',theme:'Modo oscuro',export:'Exportar copia',import:'Importar copia',reset:'Reiniciar todo el progreso',
+  resetConfirm:'¿Borrar TODO el progreso? Esta acción no se puede deshacer.',themeUse:'(el archivo sigue funcionando en modo oscuro si tu móvil está en oscuro)',
+  edited:'Editado',empty:'—',
+  about:'Khatmi · 480 thumns · sin internet',
+  reminderBody:'Aún te faltan thumns hoy. ¡Iqra!',reminderTitle:'Khatmi · وردك',
+  notifNeed:'Activa también las notificaciones del navegador',saved:'Guardado',hizbdone:'¡Hizb completado! 🎉',
+  nextTh:'Próximo thumn pendiente: Hizb',juz:'Juz’'},
+ ar:{tagline:'متابعة التلاوة · رواية ورش',tabs:{today:'اليوم',grid:'الأحزاب',stats:'إحصاء',set:'إعدادات'},
+  khatmprog:'تقدم الختمة',hizbs:'أحزاب',th:'أثمان',next:'التالي',cur:'الحزب الحالي',
+  pace1:'المعدل الفعلي',paceDef:'الهدف',days:'يوم',fin:'تاريخ الختمة المتوقع',need:'متبقٍ',done:'مكتمل',
+  todaygoal:'ورد اليوم',doneToday:'منجز اليوم',quick1:'+1 ثمن من حزبي الحالي',quickOk:'ما شاء الله! أنجزت وردك اليوم ✓',
+  hizb:'الحزب',of:'من',markall:'إتمام الحزب كاملا',save:'حفظ',unmarkall:'إلغاء الكل',close:'إغلاق',
+  thof:'الثمن',verify:'الأحزاب 50–60 بلا بيانات: انسخ أول آية من تطبيق مصحف تلاوة ثم اضغط 💾 حفظ.',
+  verifyGo:'التحقق من الأحزاب 50–60',verifyBtn:'التحقق من الأحزاب 50–60',verifySub:'ينقلك إلى أول حزب (50–60) ناقص الآيات أو التلاوة.',editHint:'الآيات قابلة للتعديل: صحّح ما يلزم ثم اضغط 💾 حفظ',streak:'أيام متتالية',week:'آخر 7 أيام',thWeek:'أثمان هذا الأسبوع',
+  best:'أفضل سلسلة',total:'مجموع الأثمان',rate:'متوسط/يوم',notif:'تذكير يومي',notifsub:'ينبهك إن لم تُنجز وردك في الوقت المحدد (يحتاج فتح التطبيق آنذاك)',
+  time:'وقت التذكير',theme:'الوضع الداكن',export:'تصدير نسخة',import:'استيراد نسخة',reset:'مسح كل التقدم',
+  resetConfirm:'سيتم مسح كل التقدم. هل أنت متأكد؟',themeUse:'',
+  edited:'معدّل',empty:'—',
+  about:'Khatmi · 480 ثمنا · بدون إنترنت',
+  reminderBody:'بقيت أثمان من وردك اليوم. اقرأ!',reminderTitle:'Khatmi · وردك',
+  notifNeed:'فعّل إشعارات المتصفح أيضا',saved:'حُفظ',hizbdone:'ما شاء الله! أتممت الحزب 🎉',
+  nextTh:'الثمن التالي: الحزب',juz:'جزء'},
+ en:{tagline:'recitation tracker · Warsh',tabs:{today:'Today',grid:'Hizbs',stats:'Stats',set:'Settings'},
+  khatmprog:'Khatm progress',hizbs:'hizbs',th:'thumns',next:'Next',cur:'Current hizb',
+  pace1:'Real pace',paceDef:'target',days:'days',fin:'Estimated khatm date',need:'left',done:'done',
+  todaygoal:"Today's goal",doneToday:'done today',quick1:'+1 thumn from my current hizb',quickOk:'MashaAllah! Goal reached today ✓',
+  hizb:'Hizb',of:'of',markall:'Mark whole hizb',save:'Save',unmarkall:'Unmark all',close:'Close',
+  thof:'thumn',verify:'Hizbs 50–60 have no data: copy each first ayah from your مصحف تلاوة app, then press 💾 Save.',
+  verifyGo:'Verify hizbs 50–60',verifyBtn:'Verify hizbs 50–60',verifySub:'Jumps to the first hizb (50–60) missing ayahs or recitation.',editHint:'ayahs are editable: fix what you need, then press 💾 Save',streak:'day streak',week:'Last 7 days',thWeek:'thumns this week',
+  best:'best streak',total:'total thumns',rate:'pace/day',notif:'Daily reminder',notifsub:'Alerts you if the goal isn’t met at that time (app must be open at that moment)',
+  time:'Reminder time',theme:'Dark mode',export:'Export backup',import:'Import backup',reset:'Reset all progress',
+  resetConfirm:'Delete ALL progress? This cannot be undone.',themeUse:'',
+  edited:'edited',empty:'—',
+  about:'Khatmi · 480 thumns · offline',
+  reminderBody:'You still have thumns left today. Read!',reminderTitle:'Khatmi · Wird',
+  notifNeed:'Also enable browser notifications',saved:'Saved',hizbdone:'Hizb completed! 🎉',
+  nextTh:'Next pending thumn: Hizb',juz:'Juz’'}
+};
+const KEY='khatmi_v1';
+let S = load();
+function load(){
+ try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.done){ for(const k in DATA.seed) if(!s.done[k]) s.done[k]='seed'; return s; } }catch(e){}
+ const done={};
+ for(const k in DATA.seed) done[k]='seed';
+ return {lang:'es', target:4, dark:false, notif:{on:false,time:'21:00',fired:''}, done, edits:{}, tab:'today', sheet:null};
+}
+function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
+const t=()=>L[S.lang];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function startText(h,i){
+ const ov=S.edits[h+'-'+(i+1)]; if(ov!==undefined) return ov;
+ const s=UNITS[h-1].starts[i]; return s||'';
+}
+function doneCount(){ return Object.keys(S.done).length; }
+function hizbDone(h){ let c=0; for(let i=1;i<=8;i++) if(S.done[h+'-'+i]) c++; return c; }
+function firstOpenHizb(){ for(let h=1;h<=60;h++) if(hizbDone(h)<8) return h; return 61; }
+
+/* ---------- render ---------- */
+function renderAll(){ renderHeader(); renderToday(); renderGrid(); renderStats(); renderTabs(); renderSettings(); applyDir(); }
+function applyDir(){ document.documentElement.dir = S.lang==='ar'?'rtl':'ltr'; }
+function renderHeader(){
+ $('logoTx').textContent='Khatmi';
+ $('t-tagline').textContent=t().tagline;
+ document.querySelectorAll('.chip[data-l]').forEach(b=>b.classList.toggle('on', b.dataset.l===S.lang));
+}
+function renderTabs(){
+ document.querySelectorAll('#tabs [data-tt]').forEach(el=>el.textContent=t().tabs[el.dataset.tt]);
+ document.querySelectorAll('#tabs button').forEach(b=>{
+   b.classList.toggle('on', b.dataset.t===S.tab);
+   b.onclick=()=>{ S.tab=b.dataset.t; save(); renderAll(); };
+ });
+}
+function renderToday(){
+ const n=doneCount(), pct=Math.round(n/480*100);
+ $('ringPct').textContent=pct+'%';
+ $('ringOf').textContent=`${n}/480`;
+ $('ringFg').style.strokeDashoffset=(295.3*(1-n/480)).toFixed(1);
+ $('counts').textContent=`${Math.round(n/8)}/60 ${t().hizbs} · ${n}/480 ${t().th}`;
+ const fh=firstOpenHizb();
+ $('nextInfo').innerHTML = fh<=60
+   ? `${t().next} — ${t().hizb} ${fh} <span class="mut">(${t().juz} ${UNITS[fh-1].juz}) · ${esc(UNITS[fh-1].title)}</span>`
+   : `🎉 ${S.lang==='ar'?'اكتملت الختمة!':S.lang==='en'?'Khatm complete!':'¡Khatm completado! MashaAllah'}`;
+ const r=pace(), rem=480-n;
+ if(rem>0){
+  const d=new Date(); d.setDate(d.getDate()+Math.ceil(rem/r));
+  const mo=S.lang==='ar'?['ينا','فبر','مار','أبر','ماي','يون','يول','أغس','سبت','أكت','نوف','ديس']:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec'];
+  $('paceInfo').textContent=`${t().fin}: ${d.getDate()} ${mo[d.getMonth()]} ${d.getFullYear()} · ${t().need} ${rem} ${t().th} · ${t().pace1} ${r}/día`;
+ } else $('paceInfo').textContent='';
+ // objetivo
+ $('t-todaygoal').textContent=t().todaygoal;
+ $('targetNum').textContent=S.target;
+ const today=isoDay(new Date());
+ const todayCnt=Object.values(S.done).filter(d=>d===today).length;
+ $('todayCount').textContent=`${todayCnt}/${S.target} ${t().doneToday}`;
+ const q=$('quickDone'); q.innerHTML='';
+ const b1=document.createElement('button'); b1.className='btn'; b1.style.flex=1;
+ b1.textContent = todayCnt>=S.target ? t().quickOk : t().quick1;
+ b1.onclick=quickDone; q.appendChild(b1);
+ // reminder card
+ const card=$('remindCard');
+ if(S.notif.on && todayCnt<S.target){
+  card.style.display='block';
+  $('remindTxt').textContent = (Notification.permission==='granted') ? `${t().reminderTitle} · ${S.notif.time}` : t().notifNeed;
+  $('remindGo').textContent = (Notification.permission==='granted') ? '✓' : '🔔';
+  $('remindGo').onclick=askNotif;
+ } else card.style.display='none';
+}
+function quickDone(){
+ const fh=firstOpenHizb(); if(fh>60) return;
+ for(let i=1;i<=8;i++){ if(!S.done[fh+'-'+i]){ S.done[fh+'-'+i]=isoDay(new Date()); break; } }
+ save(); renderAll(); checkHizbMilestone(fh);
+}
+function checkHizbMilestone(h){ if(hizbDone(h)===8) toast(t().hizbdone); }
+function isoDay(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function pace(){
+ const days={}; const cut=new Date(); cut.setDate(cut.getDate()-13);
+ for(const k in S.done){ const d=S.done[k]; if(d==='seed') continue; const dt=new Date(d+'T12:00'); if(dt>=cut) days[d]=(days[d]||0)+1; }
+ const ks=Object.keys(days); if(!ks.length) return S.target;
+ return Math.max(1, Math.round(ks.reduce((a,k)=>a+days[k],0)/14*10)/10);
+}
+function streak(){
+ let s=0; const d=new Date();
+ const has=dd=>Object.values(S.done).some(x=>x===dd);
+ if(!has(isoDay(d))) d.setDate(d.getDate()-1);
+ while(has(isoDay(d))){ s++; d.setDate(d.getDate()-1); } return s;
+}
+let bestStreakCache=0;
+function renderGrid(){
+ const g=$('hgrid'); g.innerHTML='';
+ const fh=firstOpenHizb();
+ UNITS.forEach(u=>{
+  const d=hizbDone(u.h);
+  const b=document.createElement('button');
+  b.className='hz'+(d===8?' done':u.h===fh?' next':'');
+  let bar='<span class="bar">';
+  for(let i=1;i<=8;i++) bar+=`<i class="${S.done[u.h+'-'+i]?'d':''}"></i>`;
+  bar+='</span>';
+  b.innerHTML=`<span class="n num">${u.h}</span>${bar}`;
+  b.onclick=()=>openSheet(u.h);
+  g.appendChild(b);
+ });
+}
+function openSheet(h){
+ S.sheet=h; save();
+ const u=UNITS[h-1];
+ let rows='';
+ for(let i=1;i<=8;i++){
+  const k=h+'-'+i, isDone=!!S.done[k];
+  const st=startText(h,i-1);
+  rows+=`<div class="trow">
+   <button class="tchk ${isDone?'on':''}" data-k="${k}">✓</button>
+   <div class="tmeta">
+    <div class="fr">${S.lang==='ar'?FR_AR[i-1]:FR_NUM[i-1]} · ${t().thof} ${i}/8</div>
+    <div class="ay editable" contenteditable="true" data-k="${k}">${st?esc(st):''}</div>
+   </div>
+  </div>`;
+ }
+ $('sheetBox').innerHTML=`
+  <div class="sheet-head">
+   <div>
+    <h2>${t().hizb} ${h} <span class="mut">/ 60 · ${t().juz} ${u.juz}</span></h2>
+    <div class="mut" style="margin-top:2px">${esc(u.title)}</div>
+   </div>
+   <button class="chip" id="shClose">${t().close}</button>
+  </div>
+  <div style="margin-top:4px">${rows}</div>
+  <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+   <button class="btn small" id="shSave" style="background:var(--g);color:#fff">💾 ${t().save}</button>
+   <button class="btn small ghost" id="shAll">${t().markall}</button>
+   <button class="btn small ghost" id="shNone">${t().unmarkall}</button>
+  </div>`;
+ $('sheet').style.display='flex';
+ $('shClose').onclick=closeSheet;
+ $('shSave').onclick=()=>{ collectEdits(); save(); renderAll(); openSheet(h); toast(t().saved); };
+ $('shAll').onclick=()=>{ collectEdits(); for(let i=1;i<=8;i++) if(!S.done[h+'-'+i]) S.done[h+'-'+i]=isoDay(new Date()); save(); renderAll(); openSheet(h); };
+ $('shNone').onclick=()=>{ collectEdits(); for(let i=1;i<=8;i++) delete S.done[h+'-'+i]; save(); renderAll(); openSheet(h); };
+ document.querySelectorAll('.tchk').forEach(c=>c.onclick=()=>{
+  collectEdits(); save();
+  const k=c.dataset.k;
+  if(S.done[k]) delete S.done[k]; else S.done[k]=isoDay(new Date());
+  save(); renderAll(); openSheet(h); checkHizbMilestone(h);
+ });
+}
+function collectEdits(){
+ document.querySelectorAll('#sheetBox .editable').forEach(ed=>{
+  const k=ed.dataset.k, v=ed.textContent.trim();
+  if(v) S.edits[k]=v; else delete S.edits[k];
+ });
+}
+function closeSheet(){ S.sheet=null; save(); $('sheet').style.display='none'; }
+$('sheet').addEventListener('click',e=>{ if(e.target.id==='sheet') closeSheet(); });
+
+function renderStats(){
+ const n=doneCount();
+ const st=streak(); if(st>bestStreakCache) bestStreakCache=st;
+ const week=last7();
+ const cell=(v,l)=>`<div><div class="v num">${v}</div><div class="l">${l}</div></div>`;
+ $('statGrid').innerHTML = cell(Math.round(n/8)+'/60',t().hizbs)+cell(st,t().streak)+cell(bestStreakCache,t().best)
+  + cell(n,t().total)+cell(week.reduce((a,b)=>a+b,0),t().thWeek)+cell(pace(),t().rate);
+ $('t-week').textContent=t().week;
+ const wb=$('wbar'); wb.innerHTML='';
+ const dn=['D','L','M','X','J','V','S'], ardn=['أحد','اثن','ثلا','أرب','خمي','جمع','سبت'];
+ const now=new Date();
+ for(let i=6;i>=0;i--){
+  const d=new Date(); d.setDate(d.getDate()-i); const k=isoDay(d);
+  const c=Object.values(S.done).filter(x=>x===k).length;
+  const mx=Math.max(4,...week);
+  wb.innerHTML+=`<div class="col"><div class="b" style="height:${Math.max(2,c/mx*56)}px; ${c?'':'background:var(--line)'}"></div><div class="d">${S.lang==='ar'?ardn[d.getDay()]:dn[d.getDay()]}${i===0?'·':''}</div></div>`;
+ }
+ const rem=480-n, r=pace(), dd=new Date(); dd.setDate(dd.getDate()+Math.ceil(rem/r));
+ $('finishInfo').innerHTML = rem>0
+  ? `<b>${t().fin}:</b> ${dd.toLocaleDateString(S.lang==='ar'?'ar':S.lang==='en'?'en':'es',{day:'numeric',month:'long',year:'numeric'})}<br>
+     <span class="mut">${t().need} ${rem} ${t().th} · ${t().pace1}: ${r}/${t().th}/día (${t().paceDef}: ${S.target})</span>`
+  : `<b>🎉 KHATM COMPLETE</b>`;
+}
+function last7(){
+ const out=[]; for(let i=6;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i);
+  out.push(Object.values(S.done).filter(x=>x===isoDay(d)).length); } return out;
+}
+function renderSettings(){
+ $('t-notif').textContent=t().notif; $('t-notifsub').textContent=t().notifsub;
+ $('t-time').textContent=t().time; $('notifTime').value=S.notif.time;
+ $('notifOn').checked=S.notif.on;
+ $('t-theme').textContent=t().theme+(S.dark?'':' '+t().themeUse);
+ $('darkSw').checked=S.dark;
+ $('expBtn').textContent=t().export; $('impBtn').textContent=t().import; $('resetBtn').textContent=t().reset;
+ $('aboutTxt').textContent=t().about;
+}
+function askNotif(){
+ if(!('Notification' in window)) return;
+ Notification.requestPermission().then(()=>renderAll());
+}
+function checkRemind(){
+ if(!S.notif.on) return;
+ const now=new Date(); const hm=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+ if(hm < S.notif.time) return;
+ const today=isoDay(now); if(S.notif.fired===today) return;
+ const c=Object.values(S.done).filter(d=>d===today).length;
+ if(c>=S.target) return;
+ if('Notification' in window && Notification.permission==='granted'){
+  try{ new Notification(t().reminderTitle,{body:`${t().reminderBody} (${c}/${S.target})`}); }catch(e){}
+ }
+ S.notif.fired=today; save();
+}
+function toast(msg){
+ const el=document.createElement('div');
+ el.style.cssText='position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--g);color:#fff;padding:10px 18px;border-radius:14px;z-index:50;font-weight:600;box-shadow:0 4px 18px rgba(0,0,0,.3)';
+ el.textContent=msg; document.body.appendChild(el); setTimeout(()=>el.remove(),2600);
+}
+
+/* ---------- eventos ---------- */
+document.querySelectorAll('.chip[data-l]').forEach(b=>b.onclick=()=>{ S.lang=b.dataset.l; save(); renderAll(); });
+$('minusT').onclick=()=>{ S.target=Math.max(1,S.target-1); save(); renderAll(); };
+$('plusT').onclick=()=>{ S.target=Math.min(8,S.target+1); save(); renderAll(); };
+$('notifOn').onchange=e=>{ S.notif.on=e.target.checked; save(); if(S.notif.on) askNotif(); renderAll(); };
+$('notifTime').onchange=e=>{ S.notif.time=e.target.value; S.notif.fired=''; save(); };
+$('darkSw').onchange=e=>{ S.dark=e.target.checked; save(); };
+$('expBtn').onclick=()=>{
+ const blob=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+ a.download='khatmi-backup-'+isoDay(new Date())+'.json'; a.click();
+};
+$('impBtn').onclick=()=>$('impFile').click();
+$('impFile').onchange=e=>{
+ const f=e.target.files[0]; if(!f) return;
+ const r=new FileReader();
+ r.onload=()=>{ try{ const s=JSON.parse(r.result); if(s.done){ S=Object.assign(S,s); save(); renderAll(); toast(t().saved); } }catch(x){ alert('JSON no válido'); } };
+ r.readAsText(f); e.target.value='';
+};
+$('resetBtn').onclick=()=>{ if(confirm(t().resetConfirm)){ localStorage.removeItem(KEY); location.reload(); } };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSheet(); });
+
+/* ---------- arranque ---------- */
+(function(){
+ document.getElementById('wrap').style.display='block';
+ document.getElementById('tabs').style.display='flex';
+ // marcar sección visible
+ const obs=()=>{ ['today','grid','stats','set'].forEach(x=>$('tab-'+x).style.display = x===S.tab?'block':'none'); };
+ setInterval(obs, 300);
+ renderAll();
+ if(S.sheet) openSheet(S.sheet);
+ checkRemind(); setInterval(checkRemind, 60000);
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
+</script>
+</body>
+</html>

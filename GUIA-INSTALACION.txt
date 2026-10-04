@@ -1,0 +1,27 @@
+KATMI — INSTALACIÓN CON VERCEL + GITHUB (desde el móvil, ~5 min)
+
+ARCHIVOS A SUBIR (5): khatmi.html · sw.js · manifest.json · icon-192.png · icon-512.png
+(tras subirlos, renombra khatmi.html a index.html)
+
+PASO 1 · GitHub (guardar los archivos)
+1. Descarga los 5 archivos de la conversación (mantén pulsado cada uno → Descargar)
+2. Entra en github.com → inicia sesión
+3. "+" (arriba a la derecha) → "New repository" → nombre: khatmi → Público → Create
+4. "Add file" → "Upload files" → selecciona los 5 archivos → "Commit changes"
+5. Toca khatmi.html → icono del lápiz (Edit) → renombra a index.html → Commit
+
+PASO 2 · Vercel (publicar en internet)
+6. Entra en vercel.com → inicia sesión CON TU CUENTA DE GITHUB
+7. "Add New..." → "Project" → en la lista, "Import" junto a khatmi
+8. No toques nada (Framework: Other está bien) → "Deploy"
+9. Espera ~30 segundos → ¡Listo! Te da una dirección:  https://khatmi-xxxxx.vercel.app
+
+PASO 3 · Instalar en tu Android
+10. Abre esa dirección en Chrome
+11. Menú ⋮ → "Instalar app" (o "Añadir a pantalla principal") → Instalar
+12. Aparece KHATMI con la estrella dorada como app nativa:
+    sin barra de direcciones, icono propio y FUNCIONA SIN INTERNET
+
+NOTAS
+- Si cambias algo, sube el archivo nuevo a GitHub y Vercel lo publica solo.
+- Tu progreso se guarda en cada dispositivo; usa Ajustes → Exportar copia para respaldar.
